@@ -20,10 +20,8 @@
             };
             msalInstance.loginPopup(loginRequest).then(loginResponse => {
                 console.log('id_token acquired at: ' + new Date().toString());
-                console.log(loginResponse);
-                if (msalInstance.getAccount()) {
-                    showWelcomeMessage(msalInstance.getAccount());
-                }
+                console.log(loginResponse);                              
+                showWelcomeMessage(msalInstance.getAllAccounts()[0]);           
             }).catch(error => {
                 console.error(error);
             });
@@ -31,6 +29,7 @@
 
         function showWelcomeMessage(account) {
             document.getElementById('welcomeMessage').innerText = 'Welcome ' + account.name;
+            
         }
     </script>
 </head>
