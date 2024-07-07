@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Azure AD Authentication Test</title>
+    <script src="https://alcdn.msauth.net/browser/2.15.0/js/msal-browser.min.js"></script>
+    <script>
+        const msalConfig = {
+            auth: {
+                clientId: 'YOUR_CLIENT_ID',
+                authority: 'https://login.microsoftonline.com/YOUR_TENANT_ID',
+                redirectUri: 'http://localhost:5050'
+            }
+        };
+        const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+        function signIn() {
+            const loginRequest = {
+                scopes: ["openid", "profile", "User.Read"]
+            };
+            msalInstance.loginPopup(loginRequest).then(loginResponse => {
+                console.log('id_token acquired at: ' + new Date().toString());
+                console.log(loginResponse);
+                if (msalInstance.getAccount()) {
+                    showWelcomeMessage(msalInstance.getAccount());
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+
+        function showWelcomeMessage(account) {
+            document.getElementById('welcomeMessage').innerText = 'Welcome ' + account.name;
+        }
+    </script>
+</head>
+<body>
+    <h1>Azure AD Authentication Test</h1>
+    <button onclick="signIn()">Sign In</button>
+    <p id="welcomeMessage"></p>
+</body>
+</html>
