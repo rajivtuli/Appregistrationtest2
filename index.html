@@ -7,9 +7,9 @@
     <script>
         const msalConfig = {
             auth: {
-                clientId: 'YOUR_CLIENT_ID',
-                authority: 'https://login.microsoftonline.com/YOUR_TENANT_ID',
-                redirectUri: 'http://localhost:5050'
+                clientId: '0bc0ff0e-cc0c-4950-a118-b5944e610c4e',
+                authority: 'https://login.microsoftonline.com/eb9a11c9-2b17-433f-a92a-082448eedeef',
+                redirectUri: 'https://lively-pond-0c4537d0f.5.azurestaticapps.net/'
             }
         };
         const msalInstance = new msal.PublicClientApplication(msalConfig);
@@ -35,7 +35,7 @@
     </script>
 </head>
 <body>
-    <h1>Rajiv Azure AD Authentication Test</h1>
+    <h1>PROD Azure AD Authentication Test</h1>
     <button onclick="signIn()">Sign In</button>
     <p id="welcomeMessage"></p>
 </body>
